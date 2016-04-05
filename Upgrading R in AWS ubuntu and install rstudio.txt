@@ -1,0 +1,34 @@
+
+
+
+First, become root.
+
+$ sudo /bin/bash
+Remove the old version of R.
+
+# apt-get remove r-base-core
+Edit /etc/apt/sources.list and add the following:
+
+add-apt-repository "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/"
+Back in the shell, add the public keys.
+
+gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+gpg -a --export E084DAB9 | apt-key add -
+
+# apt-get update
+# apt-get upgrade
+# apt-get install r-base
+
+Update the package list and install the new base R package.
+
+# apt-get update
+# apt-get upgrade
+# apt-get install r-base
+When you launch R you should find that it is the sparkling new version.
+
+Now you will want to update all of the packages too, so launch R (as root) and then do:
+
+> update.packages(lib.loc = "/usr/local/lib/R/site-library"
+
+
+If you have packages installed in a user library, you should update those too.

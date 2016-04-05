@@ -89,3 +89,8 @@ install RMySQL to ubuntu:
 
 1. In command line: sudo apt-get install libmysqlclient-dev
 2. In R studio: install.packages("RMySQL", dependencies=TRUE)
+
+
+Solution for MySQL: Enable LOAD DATA LOCAL INFILE:
+
+run mysql -u YOURUSERNAME -p --local-infile YOURDBNAME

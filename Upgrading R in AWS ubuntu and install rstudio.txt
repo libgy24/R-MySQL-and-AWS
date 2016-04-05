@@ -32,3 +32,51 @@ Now you will want to update all of the packages too, so launch R (as root) and t
 
 
 If you have packages installed in a user library, you should update those too.
+
+
+
+$ sudo apt-get install mysql-server mysql-client
+... output omitted ...
+$ sudo mysqladmin -u root -h localhost password 'password'
+... output omitted ...
+$ mysql -u root -p
+... output omitted ...
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'your_host_name' IDENTIFIED BY "password";
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> exit
+Bye
+$ 
+
+# Enabling remote connections #
+
+$ sudo vi /etc/mysql/my.cnf
+
+Change: 
+bind-address    = 127.0.0.1
+
+To:
+bind-address    = <your ip address>
+
+$ sudo /sbin/iptables -A INPUT -i eth0 -p tcp --destination-port 3306 -j ACCEPT
+$ sudo iptables-save
+$ sudo iptables-apply
+$ sudo service mysql restart
+
+
+
+
+
+#
+# setting up client host for rails with bundler
+#
+$ sudo apt-get install mysql-client # if different host
+$ sudo apt-get install libmysqlclient-dev
+
+... ensure that mysql is specified in your Gemfile ...
+
+$ bundle config build.mysql --with-mysql-config=/usr/bin/mysql_config
+$ bundle install

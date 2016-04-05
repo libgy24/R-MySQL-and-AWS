@@ -80,3 +80,12 @@ $ sudo apt-get install libmysqlclient-dev
 
 $ bundle config build.mysql --with-mysql-config=/usr/bin/mysql_config
 $ bundle install
+
+
+
+*********************************************************************
+
+install RMySQL to ubuntu:
+
+1. In command line: sudo apt-get install libmysqlclient-dev
+2. In R studio: install.packages("RMySQL", dependencies=TRUE)
